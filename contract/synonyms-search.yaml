@@ -70,7 +70,6 @@ paths:
           required: true
           schema:
             type: string
-            pattern: '^[a-zA-Z]+$'
       responses:
         "200":
           description: OK
