@@ -1,0 +1,9 @@
+{
+  "modelPackage": "com.dinosatrovic.synonymssearch.model",
+  "apiPackage": "com.dinosatrovic.synonymssearch.api",
+  "java8" : "true",
+  "library": "spring-boot",
+  "useTags" : "true",
+  "implicitHeaders" : "false",
+  "interfaceOnly": "true"
+}

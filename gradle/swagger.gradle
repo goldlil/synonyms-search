@@ -1,0 +1,45 @@
+configurations {
+    openApiGen
+}
+
+dependencies {
+    openApiGen 'org.openapitools:openapi-generator-cli:4.1.2'
+
+    implementation ('io.swagger:swagger-codegen-maven-plugin:2.4.8') {
+        exclude group: 'org.slf4j'
+    }
+    implementation 'io.swagger.core.v3:swagger-annotations:2.0.9'
+    implementation 'io.springfox:springfox-swagger2:2.9.2'
+    implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+    implementation 'javax.servlet:javax.servlet-api:4.0.1'
+    implementation 'org.openapitools:jackson-databind-nullable:0.2.0'
+}
+
+swaggerSources {
+
+    synonymsSearch {
+        inputFile = file("contract/synonyms-search.yaml")
+        code {
+            language = 'spring'
+            components = ['models', 'apis', 'supportingFiles']
+            wipeOutputDir = false
+            outputDir = file('build/generated-sources/swagger')
+            configFile = file('gradle/swagger-config/synonyms-search-swagger-config.json')
+            configuration = configurations.openApiGen
+        }
+    }
+
+
+}
+
+//use it if u want to build all swagger resources automatically
+//compileJava.dependsOn generateSwaggerCode
+compileJava.dependsOn swaggerSources.synonymsSearch.code
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'build/generated-sources/swagger/src/main/java'
+        }
+    }
+}
