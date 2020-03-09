@@ -1,0 +1,101 @@
+openapi: 3.0.0
+info:
+  description: Api for adding and searching synonyms
+  version: "1.0"
+  title: Synonyms search
+tags:
+  - name: synonyms-search
+paths:
+  /synonyms/add:
+    post:
+      tags:
+        - synonyms-search
+      summary: addSynonyms
+      operationId: addSynonyms
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SynonymsInput"
+        description: synonymsInput
+        required: true
+      responses:
+        "201":
+          description: Created
+        "403":
+          description: Forbidden
+        "500":
+          description: Internal server error
+  /synonyms/add-collection:
+    post:
+      tags:
+        - synonyms-search
+      summary: addSynonyms
+      operationId: addSynonymsCollection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/SynonymsInput"
+        description: synonymsInput
+        required: true
+      responses:
+        "201":
+          description: Created
+        "403":
+          description: Forbidden
+        "500":
+          description: Internal server error
+      deprecated: false
+  /synonyms/search:
+    get:
+      tags:
+        - synonyms-search
+      summary: findSynonyms
+      operationId: findSynonyms
+      parameters:
+        - name: depth
+          in: query
+          description: depth
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+        - name: word
+          in: query
+          description: word
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Internal server error
+      deprecated: false
+components:
+  schemas:
+    SynonymsInput:
+      type: object
+      properties:
+        synonyms:
+          type: array
+          items:
+            type: string
+            pattern: '^[a-zA-Z]+$'
+        word:
+          type: string
+          pattern: '^[a-zA-Z]+$'

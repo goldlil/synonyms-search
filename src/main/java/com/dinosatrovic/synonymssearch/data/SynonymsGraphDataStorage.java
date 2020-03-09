@@ -1,6 +1,5 @@
 package com.dinosatrovic.synonymssearch.data;
 
-import com.dinosatrovic.synonymssearch.controller.model.SynonymsInput;
 import org.springframework.stereotype.Component;
 
 import java.util.*;

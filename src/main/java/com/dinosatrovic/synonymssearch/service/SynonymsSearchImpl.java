@@ -1,7 +1,7 @@
 package com.dinosatrovic.synonymssearch.service;
 
-import com.dinosatrovic.synonymssearch.controller.model.SynonymsInput;
 import com.dinosatrovic.synonymssearch.data.SynonymsRepository;
+import com.dinosatrovic.synonymssearch.model.SynonymsInput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
